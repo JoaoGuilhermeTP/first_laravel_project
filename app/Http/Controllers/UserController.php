@@ -32,11 +32,10 @@ class UserController extends Controller
         // Create a model to store that user and add it to the
         // database
         $user = User::create($incomingFields);
-        auth()->login($user);
-        return redirect('/');
 
-        // If validation is successful, will return string
-        return  "Hello {$request->name}";   
+        // Log user in
+        auth()->login($user);
+        return redirect('/'); 
     }
 
     public function login(Request $request) {
