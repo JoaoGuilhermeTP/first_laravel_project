@@ -22,4 +22,4 @@ Route::post('/logout', [UserController::class, 'logout']);
 //POST CONTROLLER
 
 // Create new post
-Route::post('create-post', [PostController::class, 'createPost'];)
+Route::post('create-post', [PostController::class, 'createPost']);
