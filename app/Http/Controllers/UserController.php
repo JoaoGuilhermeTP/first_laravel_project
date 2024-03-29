@@ -17,9 +17,9 @@ class UserController extends Controller
 
         // Create an array defining the requisites for each field
         // to be validated
-        $validation = ['name' => ['required', 'min:3', 'max:10', Rule::unique('users', 'name')], 
+        $validation = ['name' => ['required', 'min:3', 'max:50', Rule::unique('users', 'name')], 
                        'email' => ['required', 'email', Rule::unique('users', 'email')], 
-                       'password' => ['required', 'min:8', 'max:200']];
+                       'password' => ['required', 'min:3', 'max:200']];
 
         // Validate the user input, passsing that array
         // to the validate method from the Request object
@@ -43,7 +43,8 @@ class UserController extends Controller
                        'loginpassword' => 'required'];
         $incomingFields = $request->validate($validation);
 
-        if (auth()->attempt(['name'=>$incomingFields['loginname'], 'password'=>$incomingFields['loginpassword']])) {
+        if (auth()->attempt(['name'=>$incomingFields['loginname'], 
+                             'password'=>$incomingFields['loginpassword']])) {
             $request->session()->regenerate();
         }
 

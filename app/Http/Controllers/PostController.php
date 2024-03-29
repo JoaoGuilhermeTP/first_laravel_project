@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    // Function to create a new post
     public function createPost(Request $request) {
         $incomingFields = $request->validate([
             'title' => 'required',
@@ -16,6 +18,7 @@ class PostController extends Controller
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
+        return redirect('/');
 
 
     }
