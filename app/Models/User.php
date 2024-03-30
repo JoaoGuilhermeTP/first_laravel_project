@@ -45,6 +45,8 @@ class User extends Authenticatable
         ];
     }
 
+    // Create the relationship of one to many
+    // One user has many posts
     public function usersCoolPosts() {
         return $this->hasMany(Post::class, 'user_id');
     }

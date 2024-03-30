@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
+            // Define the columns that the posts table will have
+            // and their datatypes
             $table->id();
             $table->timestamps();
             $table->string('title');

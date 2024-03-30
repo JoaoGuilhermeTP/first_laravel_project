@@ -27,6 +27,27 @@
             </form>
         </div>
 
+        <!-- Display posts -->
+        <div style="border: 3px solid black;">
+            <h2>All Posts</h2>
+            <!-- Iterade over posts array -->
+            @foreach($posts as $post)
+            <div style="background-color: gray; padding: 10px; margin: 10px;">
+                <h3>{{$post['title']}} by {{$post->user->name}}</h3>
+                {{$post['body']}}
+                <!-- Link to edit post -->
+                <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
+                <!-- Button to delete post -->
+                <form action="/delete-post/{{$post->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button>Delete</button>
+                </form>
+
+            </div>
+            @endforeach
+        </div>
+
     <!-- In case it's not -->
     @else
 
